@@ -1,16 +1,32 @@
 import { images, business } from "@/lib/business";
 
-// Plain <img>, not next/image: no resizing, no format conversion, no
-// quality/compression pass. The browser loads and paints the source file
-// exactly as it exists at the URL, so nothing here can reintroduce the
-// edge artifacts an image-processing step caused previously. Sizing comes
-// entirely from the height utility classes passed in via `className`
-// (e.g. h-11, h-14) with width left auto to preserve the source aspect
-// ratio — no filter, transform, mask, blend-mode, or opacity is applied
-// here or on any ancestor of this element.
+// The source cutout has red/yellow JPEG compression noise baked into the
+// edge pixels (chroma subsampling artifacts along the letterforms), which
+// a plain image render still shows. A CSS mask sidesteps this: only the
+// image's alpha shape is used as a stencil, filled with a single flat
+// gold color, so the contaminated RGB values at the edges are never
+// actually painted.
 export default function Logo({ className = "" }: { className?: string }) {
+  const maskImage = `url(${images.logo})`;
+
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={images.logo} alt={`${business.name} logo`} className={className} />
+    <span
+      role="img"
+      aria-label={`${business.name} logo`}
+      className={className}
+      style={{
+        display: "inline-block",
+        aspectRatio: "2000 / 876",
+        backgroundColor: "var(--color-gold)",
+        WebkitMaskImage: maskImage,
+        maskImage,
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskPosition: "left center",
+        maskPosition: "left center",
+      }}
+    />
   );
 }

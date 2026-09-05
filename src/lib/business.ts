@@ -140,7 +140,7 @@ export const images = {
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_3cba3a9d-cab8-47ac-be6d-ba4b91f668a7.png",
   demolition:
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_4f5a09c9-bd55-4679-ba1f-f973be5cdd4d.png",
-  logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_195840_e5f9b273-4fa9-45d6-b063-a8ee7f0f9151.png",
+  logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_200541_2bf93989-6346-49e6-ba52-2dea4d463cce.png",
 };
 
 export interface PortfolioItem {

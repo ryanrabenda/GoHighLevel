@@ -120,6 +120,9 @@ export const services: Service[] = [
 ];
 
 export const images = {
+  // Clean gold logo (final, approved artwork), background-removed only —
+  // no recoloring or regeneration applied to this file.
+  logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_230130_770e861a-6f77-4e79-a4ed-35611ff1f83a.png",
   hero: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192651_776fa55c-2e02-4d5d-bcc7-e7bd45bbc91c.png",
   introBefore:
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_92d3f829-053a-4099-8989-4d674db98493.png",
@@ -140,10 +143,6 @@ export const images = {
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_3cba3a9d-cab8-47ac-be6d-ba4b91f668a7.png",
   demolition:
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_4f5a09c9-bd55-4679-ba1f-f973be5cdd4d.png",
-  // Clean cutout (crisp, undistorted edges) — recolored to gold via a CSS
-  // mask in the Logo component rather than another AI recolor pass, which
-  // kept warping the fine serif letterforms.
-  logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_195840_e5f9b273-4fa9-45d6-b063-a8ee7f0f9151.png",
 };
 
 export interface PortfolioItem {

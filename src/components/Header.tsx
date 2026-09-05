@@ -46,7 +46,7 @@ export default function Header() {
     >
       <div className="container-tarzan flex h-16 items-center justify-between md:h-20">
         <Link href="#top" className="flex items-center gap-2" aria-label={`${business.name} home`}>
-          <Logo className="h-11 w-auto md:h-14" />
+          <Logo className="h-11 w-auto md:h-14" priority />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">

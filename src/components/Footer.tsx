@@ -10,9 +10,9 @@ export default function Footer() {
         <div>
           <Logo className="h-14 w-auto" />
           <p className="mt-4 text-sm text-offwhite/60">
-            {business.location}
+            {business.streetAddress}
             <br />
-            {business.region}
+            {business.addressLocality}, {business.addressRegion}
           </p>
           <a
             href={business.phoneHref}

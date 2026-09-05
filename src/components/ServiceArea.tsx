@@ -13,8 +13,9 @@ export default function ServiceArea() {
             Taming jungles across the Hudson Valley.
           </h2>
           <p className="mt-5 text-base leading-relaxed text-charcoal/75 sm:text-lg">
-            Based in Newburgh, New York, and serving surrounding Hudson Valley
-            communities across Orange, Dutchess, Ulster and Putnam counties.
+            Based at {business.fullAddress}, and serving surrounding Hudson
+            Valley communities across Orange, Dutchess, Ulster and Putnam
+            counties.
           </p>
 
           <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-eyebrow text-sm uppercase tracking-wide text-charcoal/70">
@@ -40,37 +41,30 @@ export default function ServiceArea() {
         </Reveal>
 
         <Reveal delay={0.15}>
-          <div className="relative mx-auto aspect-square w-full max-w-md rounded-sm bg-forest-deep p-8">
-            <svg
-              viewBox="0 0 200 200"
-              className="h-full w-full text-khaki/25"
-              aria-hidden
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="0.6"
-            >
-              {[...Array(8)].map((_, i) => (
-                <path
-                  key={i}
-                  d={`M ${10 + i * 3} 10 C ${40 + i * 4} ${50 + i * 6}, ${150 - i * 4} ${60 + i * 8}, ${190 - i * 3} ${190 - i * 4}`}
-                />
-              ))}
-            </svg>
-            <div className="absolute inset-8 flex items-center justify-center">
-              <div className="relative flex h-full w-full items-center justify-center">
-                <span className="absolute h-3 w-3 animate-ping rounded-full bg-moss/60" />
-                <span className="relative h-3 w-3 rounded-full bg-moss ring-4 ring-offwhite/20" />
-                <span className="absolute top-[calc(50%+12px)] whitespace-nowrap font-eyebrow text-xs uppercase tracking-wider text-offwhite">
-                  Newburgh, NY
-                </span>
-              </div>
+          <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-sm bg-forest-deep p-2 shadow-xl shadow-forest-dark/20 ring-1 ring-moss/30">
+            <div className="aspect-square w-full overflow-hidden rounded-sm">
+              <iframe
+                title={`Map showing ${business.name} at ${business.fullAddress}`}
+                src={business.googleMapsEmbedSrc}
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: "grayscale(0.15) contrast(1.05)" }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-full w-full"
+              />
             </div>
-            <span className="absolute left-6 top-6 font-eyebrow text-[10px] uppercase tracking-[0.2em] text-offwhite/50">
-              41.5&deg;N, 74.0&deg;W
-            </span>
-            <span className="absolute bottom-6 right-6 font-eyebrow text-[10px] uppercase tracking-[0.2em] text-offwhite/50">
-              Hudson Valley
-            </span>
+            <a
+              href={business.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 flex items-center justify-between gap-2 rounded-sm bg-forest-dark px-4 py-3 font-eyebrow text-xs uppercase tracking-wide text-offwhite/80 transition-colors hover:text-khaki"
+            >
+              <span>{business.fullAddress}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3.5 w-3.5 shrink-0">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
           </div>
         </Reveal>
       </div>

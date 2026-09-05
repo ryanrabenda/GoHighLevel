@@ -88,6 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     telephone: business.phoneHref.replace("tel:", ""),
     address: {
       "@type": "PostalAddress",
+      streetAddress: business.streetAddress,
       addressLocality: business.addressLocality,
       addressRegion: business.addressRegion,
       addressCountry: "US",
@@ -96,6 +97,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       "@type": "AdministrativeArea",
       name: county,
     })),
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: business.googleRating,
+      reviewCount: business.googleReviewCount,
+    },
     priceRange: "$$",
     makesOffer: [
       "Tree Removal",

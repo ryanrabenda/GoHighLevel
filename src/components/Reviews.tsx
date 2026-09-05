@@ -1,3 +1,4 @@
+import { business } from "@/lib/business";
 import Reveal from "./Reveal";
 
 const themes = [
@@ -8,6 +9,31 @@ const themes = [
   "Responsive communication",
   "Knowledgeable tree work",
 ];
+
+function Stars({ rating }: { rating: number }) {
+  return (
+    <div className="flex items-center gap-0.5" role="img" aria-label={`${rating} out of 5 stars`}>
+      {Array.from({ length: 5 }).map((_, i) => {
+        const fill = Math.max(0, Math.min(1, rating - i));
+        return (
+          <span key={i} className="relative inline-block h-5 w-5">
+            <svg viewBox="0 0 24 24" className="absolute inset-0 h-5 w-5 text-khaki/40" fill="currentColor" aria-hidden>
+              <path d="M12 2.5l2.9 6.4 6.9.7-5.2 4.6 1.6 6.8L12 17.6l-6.2 3.4 1.6-6.8L2.2 9.6l6.9-.7L12 2.5Z" />
+            </svg>
+            <span
+              className="absolute inset-0 overflow-hidden text-amber"
+              style={{ width: `${fill * 100}%` }}
+            >
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden>
+                <path d="M12 2.5l2.9 6.4 6.9.7-5.2 4.6 1.6 6.8L12 17.6l-6.2 3.4 1.6-6.8L2.2 9.6l6.9-.7L12 2.5Z" />
+              </svg>
+            </span>
+          </span>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function Reviews() {
   return (
@@ -20,6 +46,22 @@ export default function Reviews() {
           <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-[1.02] text-forest-dark text-balance sm:text-5xl">
             Hudson Valley property owners have seen the difference.
           </h2>
+
+          <a
+            href={business.googleMapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-3 rounded-sm border border-stone/30 bg-white/60 px-4 py-3 transition-colors hover:border-moss"
+          >
+            <Stars rating={business.googleRating} />
+            <span className="font-display text-2xl font-bold text-forest-dark">
+              {business.googleRating}
+            </span>
+            <span className="font-eyebrow text-sm uppercase tracking-wide text-charcoal/60">
+              {business.googleReviewCount} Google Reviews
+            </span>
+          </a>
+
           <p className="mt-5 text-base leading-relaxed text-charcoal/75 sm:text-lg">
             Feedback from past customers consistently mentions a few things:
             fair pricing, dependable scheduling and a crew that leaves the
@@ -53,7 +95,7 @@ export default function Reviews() {
               See what customers are saying on Google.
             </p>
             <a
-              href="https://www.google.com/search?q=Tarzan+Treescaping+Newburgh+NY+reviews"
+              href={business.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="whitespace-nowrap rounded-sm bg-khaki px-6 py-3 font-eyebrow text-xs uppercase tracking-wider text-forest-dark transition-colors hover:bg-moss"

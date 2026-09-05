@@ -11,10 +11,18 @@ export const business = {
   email: "info@tarzantreescaping.com",
   location: "Newburgh, NY",
   region: "Hudson Valley",
+  streetAddress: "32 Commonwealth Avenue",
   addressLocality: "Newburgh",
   addressRegion: "NY",
+  fullAddress: "32 Commonwealth Avenue, Newburgh, NY",
   tagline: "Taming the Jungle in Your Yard.",
   specialServicesUrl: SPECIAL_SERVICES_URL,
+  googleRating: 4.9,
+  googleReviewCount: 35,
+  googleMapsUrl:
+    "https://www.google.com/maps/place/?q=Tarzan+Treescaping,32+Commonwealth+Ave,Newburgh,NY",
+  googleMapsEmbedSrc:
+    "https://maps.google.com/maps?q=32+Commonwealth+Ave,+Newburgh,+NY&z=14&output=embed",
   serviceCounties: ["Orange County", "Dutchess County", "Ulster County", "Putnam County"],
   serviceTowns: [
     "Newburgh",
@@ -132,7 +140,7 @@ export const images = {
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_3cba3a9d-cab8-47ac-be6d-ba4b91f668a7.png",
   demolition:
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_4f5a09c9-bd55-4679-ba1f-f973be5cdd4d.png",
-  logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192605_ee3281c3-f10b-481b-ac75-1ad446ccd9e5.png",
+  logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_195840_e5f9b273-4fa9-45d6-b063-a8ee7f0f9151.png",
 };
 
 export interface PortfolioItem {

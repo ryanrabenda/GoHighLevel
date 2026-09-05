@@ -141,11 +141,6 @@ export const images = {
   demolition:
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_4f5a09c9-bd55-4679-ba1f-f973be5cdd4d.png",
   logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_195840_e5f9b273-4fa9-45d6-b063-a8ee7f0f9151.png",
-  // Single-tone khaki recolor of the logo (icon + wordmark), used on the
-  // site's dark forest header/footer so it reads as part of the palette
-  // instead of clashing full-color art on top of a dark section.
-  logoMono:
-    "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_200541_2bf93989-6346-49e6-ba52-2dea4d463cce.png",
 };
 
 export interface PortfolioItem {

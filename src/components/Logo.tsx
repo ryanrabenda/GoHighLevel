@@ -10,7 +10,7 @@ export default function Logo({
 }) {
   return (
     <Image
-      src={images.logoMono}
+      src={images.logo}
       alt={`${business.name} logo`}
       width={640}
       height={360}

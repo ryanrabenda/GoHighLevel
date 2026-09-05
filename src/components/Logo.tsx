@@ -1,22 +1,29 @@
-import Image from "next/image";
 import { images, business } from "@/lib/business";
 
-export default function Logo({
-  className = "",
-  priority = false,
-}: {
-  className?: string;
-  priority?: boolean;
-}) {
+// Recolors the original clean logo cutout to solid gold using a CSS mask,
+// instead of an AI recolor pass — the alpha shape (and its crisp text
+// edges) comes straight from the source image, untouched.
+export default function Logo({ className = "" }: { className?: string }) {
+  const maskImage = `url(${images.logo})`;
+
   return (
-    <Image
-      src={images.logo}
-      alt={`${business.name} logo`}
-      width={640}
-      height={360}
-      priority={priority}
+    <span
+      role="img"
+      aria-label={`${business.name} logo`}
       className={className}
-      unoptimized
+      style={{
+        display: "inline-block",
+        aspectRatio: "2000 / 876",
+        backgroundColor: "var(--color-gold)",
+        WebkitMaskImage: maskImage,
+        maskImage,
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskPosition: "left center",
+        maskPosition: "left center",
+      }}
     />
   );
 }

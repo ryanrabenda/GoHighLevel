@@ -120,12 +120,9 @@ export const services: Service[] = [
 ];
 
 export const images = {
-  // Background-removed cutout of the user-supplied JPEG logo. The JPEG had
-  // visible chroma-subsampling compression artifacts (red/yellow speckling)
-  // right at the letter edges; cutting a clean alpha mask around the actual
-  // letterforms discards that contaminated boundary ring along with the
-  // background, rather than trying to paint over it.
-  logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_232509_58f81751-3265-45a6-ac7f-a4a7f0bfc102.png",
+  // Final, user-approved clean gold logo: solid flat color, genuinely
+  // transparent background, no visible edge noise. Served as-is.
+  logo: "https://d2ol7oe51mr4n9.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/f3d11d90-6b6a-4eb1-8e05-35dc38f592ea.png",
   hero: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192651_776fa55c-2e02-4d5d-bcc7-e7bd45bbc91c.png",
   introBefore:
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_92d3f829-053a-4099-8989-4d674db98493.png",

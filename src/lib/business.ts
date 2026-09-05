@@ -120,9 +120,12 @@ export const services: Service[] = [
 ];
 
 export const images = {
-  // Clean gold logo (final, approved artwork), background-removed only —
-  // no recoloring or regeneration applied to this file.
-  logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_230130_770e861a-6f77-4e79-a4ed-35611ff1f83a.png",
+  // The exact file the user uploaded (media_id 1030acd8-...), served as-is.
+  // Not run through any background-removal or AI processing — that step is
+  // what introduced dark edge artifacts on a previous pass. If this file's
+  // background isn't actually transparent, it will render with a visible
+  // box behind it, which means the source PNG itself has no alpha channel.
+  logo: "https://d2ol7oe51mr4n9.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/1030acd8-d8b4-4c09-a447-279a81a67918.png",
   hero: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192651_776fa55c-2e02-4d5d-bcc7-e7bd45bbc91c.png",
   introBefore:
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_92d3f829-053a-4099-8989-4d674db98493.png",

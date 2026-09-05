@@ -120,9 +120,12 @@ export const services: Service[] = [
 ];
 
 export const images = {
-  // Final, user-approved clean gold logo: solid flat color, genuinely
-  // transparent background, no visible edge noise. Served as-is.
-  logo: "https://d2ol7oe51mr4n9.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/f3d11d90-6b6a-4eb1-8e05-35dc38f592ea.png",
+  // The user's actual original logo, background-removed only (no AI
+  // regeneration, no JPEG round-trip) — identical shapes and font to the
+  // real artwork. Used as a mask shape in Logo.tsx so it can be recolored
+  // to the site's gold tone without ever rendering its original RGB
+  // pixels (and therefore no edge noise of any kind).
+  logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_195840_e5f9b273-4fa9-45d6-b063-a8ee7f0f9151.png",
   hero: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192651_776fa55c-2e02-4d5d-bcc7-e7bd45bbc91c.png",
   introBefore:
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_92d3f829-053a-4099-8989-4d674db98493.png",

@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --color-forest-deep: #102e22;
+  --color-forest-dark: #071a13;
+  --color-moss: #6c7c3a;
+  --color-khaki: #c5ae78;
+  --color-stone: #a49c8b;
+  --color-offwhite: #f5f1e7;
+  --color-charcoal: #161a17;
+  --color-amber: #b5762c;
+  --color-oxblood: #6e2a20;
+}
+
+@theme inline {
+  --color-forest-deep: var(--color-forest-deep);
+  --color-forest-dark: var(--color-forest-dark);
+  --color-moss: var(--color-moss);
+  --color-khaki: var(--color-khaki);
+  --color-stone: var(--color-stone);
+  --color-offwhite: var(--color-offwhite);
+  --color-charcoal: var(--color-charcoal);
+  --color-amber: var(--color-amber);
+  --color-oxblood: var(--color-oxblood);
+
+  --font-display: var(--font-barlow-condensed);
+  --font-eyebrow: var(--font-oswald);
+  --font-sans: var(--font-inter);
+
+  --animate-drift: drift 60s linear infinite;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-offwhite);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans), sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.container-tarzan {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container-tarzan {
+    padding-inline: 2rem;
+  }
+}
+
+.rope-divider {
+  height: 2px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    currentColor 0 10px,
+    transparent 10px 18px
+  );
+  opacity: 0.35;
+}
+
+::selection {
+  background: var(--color-moss);
+  color: var(--color-offwhite);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-khaki);
+  outline-offset: 3px;
+}

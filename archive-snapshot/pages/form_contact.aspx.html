@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="ctl00_Head1"><title>
+
+</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .style1
+        {
+            width: 860px;
+        }
+        .style2
+        {
+        width: 233px;
+    }
+    </style>
+    <script type="text/javascript">
+        // creates a function to set the css class name of input controls when they   
+        // receive or lose focus.   
+        setAspnetTextFocus = function() {
+            // CSS class name to use when no focus is on the input control   
+            var classBlur = 'box';
+            // CSS class name to use when the input control has focus   
+            var classFocus = 'box_selected';
+            // get all of the input tags on the page   
+            var inputElements = document.getElementsByTagName('input');
+
+            for (var i = 0; i < inputElements.length; i++) {
+                // add the onfocus event and set it to add the on focused CSS class  
+                inputElements[i].onfocus = function() {
+                    if (this.className == 'box') {
+                        this.className += ' ' + classFocus;
+                    }
+                }
+                // add the onblur event and set it to remove the on focused CSS class when it loses focus  
+                inputElements[i].onblur = function() {
+                    this.className = this.className.replace(new RegExp(' ' + classFocus + '\\b'), '');
+                }
+            }
+        }
+        // attach this event on load of the page  
+        if (window.attachEvent) window.attachEvent('onload', setAspnetTextFocus);
+    </script>
+    
+<link href="styles.css" rel="stylesheet" type="text/css" /></head>
+<body style="background-color: #4a631d; background-image: url(images/backgrounds/tarzanBG_ZebraBase.jpg); background-repeat: no-repeat; background-position: bottom; background-attachment: fixed;">
+    <form name="aspnetForm" method="post" action="/form_contact.aspx" id="aspnetForm">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTIwMzczODI0OTVkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYDBR9jdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJHJiWWVzBR5jdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJHJiTm8FHmN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkcmJOb9RiZOzEm+tdh5TL4stWslbqyXOx" />
+
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWIgLizIDyBQLozcS4CQKEtJirCQLUnp3xAQKd3fHECgLMkMAyAoH/0pQEAo3KpakGAsi9h+kGAsmdkqkJAtj58cIKAqaSv8sLAoasp7cIAq+Ly/EKAufU3sEGArScssMOApvNlr0LAqnj//UKAtjmqLoFAqXF+88DAouhoYkCAqzh6h4Chpmp9wcCtZeP8AcC3Y6ktgMC2OfT9AwCg8Pc9gkCp+u5sgoCjaPrnw4C04i5lw4CudmVpgkC2oy+vgMCoumTyAEC+NCVogpOC/6jLregu31Jb6CPPcXNUL8R0A==" />
+    <div id="wrapper">
+    
+        <div id="header">
+            
+
+<div class="header_images">
+    <img src="images/header/hdr_1_1.png" alt="Tarzan Treescaping Newburgh, NY"  border="0"/>
+    <img src="images/header/hdr_1_2.png" alt="Hudson Valley New York"  border="0"/>
+    <img src="images/header/hdr_1_3.png" alt="Landscaping & Tree Service"  border="0"/>
+    
+    <a href="default.aspx"><img src="images/header/hdr_1_4.png" onmouseover="javascript:this.src='images/header/selected/hdr_1_4.png';"  onmouseout="javascript:this.src='images/header/hdr_1_4.png';" alt="Tarzan Treescaping Homepage" border="0"/></a>
+    
+    <a href="form_contact.aspx"><img src="images/header/hdr_1_5.png" onmouseover="javascript:this.src='images/header/selected/hdr_1_5.png';"  onmouseout="javascript:this.src='images/header/hdr_1_5.png';" alt="Contact Tarzan Treescaping Tree & Landscaping Service" border="0"/></a>
+</div>
+
+<div class="header_images">
+    <a href="default.aspx"><img src="images/header/hdr_2_1.png" alt="Tarzan Treescaping"  border="0"/></a>
+    <a href="default.aspx"><img src="images/header/hdr_2_2.png" alt="Newburgh / Hudson Valley NY"  border="0"/></a>
+    
+    <a href="aboutus.aspx"><img src="images/header/hdr_2_3.png" onmouseover="javascript:this.src='images/header/selected/hdr_2_3.png';"  onmouseout="javascript:this.src='images/header/hdr_2_3.png';" alt="About Tarzan Treescaping"  border="0"/></a>
+    
+    <a href="services.aspx"><img src="images/header/hdr_2_4.png" onmouseover="javascript:this.src='images/header/selected/hdr_2_4.png';"  onmouseout="javascript:this.src='images/header/hdr_2_4.png';" alt="View Our Tree & Landscaping Services" border="0"/></a>
+    
+    <a href="page.aspx?id=2647"><img src="images/header/hdr_2_5.png" onmouseover="javascript:this.src='images/header/selected/hdr_2_5.png';"  onmouseout="javascript:this.src='images/header/hdr_2_5.png';" alt="Customer Testimonials" border="0"/></a>
+    
+    <a href="tools.aspx"><img src="images/header/hdr_2_6.png" onmouseover="javascript:this.src='images/header/selected/hdr_2_6.png';"  onmouseout="javascript:this.src='images/header/hdr_2_6.png';"alt="Free Landscape Material Tools"  border="0"/></a>
+    
+    <a href="portfolio.aspx"><img src="images/header/hdr_2_7.png" onmouseover="javascript:this.src='images/header/selected/hdr_2_7.png';"  onmouseout="javascript:this.src='images/header/hdr_2_7.png';" alt="Photos of our Tree & Shrub, Landscaping, Land Clearing and Junk Removal Work."  border="0"/></a>
+    
+    <a href="form_refer.aspx"><img src="images/header/hdr_2_8.png" onmouseover="javascript:this.src='images/header/selected/hdr_2_8.png';"  onmouseout="javascript:this.src='images/header/hdr_2_8.png';" alt="Refer a Friend to Tarzan Treescaping Landscape & Tree Service"  border="0"/></a>
+    
+    <a href="form_quote.aspx"><img src="images/header/hdr_2_9.png" onmouseover="javascript:this.src='images/header/selected/hdr_2_9.png';"  onmouseout="javascript:this.src='images/header/hdr_2_9.png';" alt="Get a FREE quote for any of our Tree or Landscaping / Junk Removal services"  border="0"/></a>
+    
+</div>
+        </div><!-- end div id="header" -->
+        
+         <div class="clear" style="height: 0px"></div>          
+             
+        <div id="content_area"><!-- ** -->
+                    
+    
+    <div class="text">
+    <h1>Contact Form</h1>
+        
+        <table style="margin-top: 10px;">
+            <tr>
+                <td class="style2"><strong>Our Address:</strong></td>
+                <td>32 CommonWealth Ave | Newburgh, NY 12550</td>
+            </tr>
+            <tr>
+                <td class="style2"><strong>Phone:</strong></td>
+                <td>(845) 784-4674 or (845) 518-0133</td>
+            </tr>
+            <tr>
+                <td class="style2"><strong>Email:</strong></td>
+                <td><a href="mailto: andriani@consultant.com">andriani@consultant.com</a></td>
+            </tr>
+            <tr>
+                <td class="style2">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2"style="text-align: center"><strong>Use the convenient contact form below for any questions you may have concerning our services.</strong></td>
+            </tr>
+            <tr>
+                <td class="style2">&nbsp;</td>
+            </tr>
+        </table>
+    
+        <table cellpadding="3" cellspacing="4" class="style1" width="500">
+            <tr>
+                <td class="label">
+                    &nbsp;
+                </td>
+            <td class="value" style="line-height: normal; letter-spacing: normal; font-size: 14px; color: Red;"><span id="ctl00_ContentPlaceHolder1_lblMessage"></span></td>
+           </tr>
+            <tr>
+                <td class="label">
+                    First
+                    Name:</td>
+                <td class="value">
+                    <input name="ctl00$ContentPlaceHolder1$txtFirstName" type="text" id="ctl00_ContentPlaceHolder1_txtFirstName" class="box" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Last Name:</td>
+                <td class="value">
+                    <input name="ctl00$ContentPlaceHolder1$txtLastName" type="text" id="ctl00_ContentPlaceHolder1_txtLastName" class="box" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Email Address:</td>
+                <td class="value">
+                    <input name="ctl00$ContentPlaceHolder1$txtEmail" type="text" id="ctl00_ContentPlaceHolder1_txtEmail" class="box" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Home Phone:</td>
+                <td class="value">
+                    <input name="ctl00$ContentPlaceHolder1$txtHomePhone" type="text" id="ctl00_ContentPlaceHolder1_txtHomePhone" class="box" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Daytime Phone:</td>
+                <td class="value">
+                    <input name="ctl00$ContentPlaceHolder1$txtPhone" type="text" id="ctl00_ContentPlaceHolder1_txtPhone" class="box" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Would you like us to Call You?</td>
+                <td class="value">
+                    <input id="ctl00_ContentPlaceHolder1_rbYes" type="radio" name="ctl00$ContentPlaceHolder1$CallYou" value="rbYes" checked="checked" /><label for="ctl00_ContentPlaceHolder1_rbYes">Yes</label>
+&nbsp;
+                    <input id="ctl00_ContentPlaceHolder1_rbNo" type="radio" name="ctl00$ContentPlaceHolder1$CallYou" value="rbNo" /><label for="ctl00_ContentPlaceHolder1_rbNo">No</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Best Time to Call:</td>
+                <td class="value">
+                    <input name="ctl00$ContentPlaceHolder1$txtBestTime" type="text" id="ctl00_ContentPlaceHolder1_txtBestTime" class="box" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Address:</td>
+                <td class="value">
+                    <input name="ctl00$ContentPlaceHolder1$txtAddress" type="text" id="ctl00_ContentPlaceHolder1_txtAddress" class="box" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    City:</td>
+                <td class="value">
+                    <input name="ctl00$ContentPlaceHolder1$txtCity" type="text" id="ctl00_ContentPlaceHolder1_txtCity" class="box" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    State/Province:</td>
+                <td class="value">
+                    <input name="ctl00$ContentPlaceHolder1$txtState" type="text" id="ctl00_ContentPlaceHolder1_txtState" class="box" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Zip/Postal Code:</td>
+                <td class="value">
+                    <input name="ctl00$ContentPlaceHolder1$txtZip" type="text" id="ctl00_ContentPlaceHolder1_txtZip" class="box" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    How did you hear about us?</td>
+                <td class="value_required">
+                    <select name="ctl00$ContentPlaceHolder1$drpHearAboutUs" id="ctl00_ContentPlaceHolder1_drpHearAboutUs" class="form-dropdown" style="height: 32px;">
+	<option value="Choose One">Choose One</option>
+	<option value="Saw Crew Working">Saw Crew Working</option>
+	<option value="Haines Directory">Haines Directory</option>
+	<option value="Verizon Directory">Verizon Directory</option>
+	<option value="Customer Referral">Customer Referral</option>
+	<option value="Contractor Referral">Contractor Referral</option>
+	<option value="Referral - Other">Referral - Other</option>
+	<option value="Just Knew About You">Just Knew About You</option>
+	<option value="Drove By Your Office">Drove By Your Office</option>
+	<option value="Saw a Lawn Sign">Saw a Lawn Sign</option>
+	<option value="Saw Your Trucks">Saw Your Trucks</option>
+	<option value="Door Hanger">Door Hanger</option>
+	<option value="Business Card">Business Card</option>
+	<option value="Google">Google</option>
+	<option value="Yahoo">Yahoo</option>
+	<option value="Saw Your Website">Saw Your Website</option>
+	<option value="Got a Piece of Mail">Got a Piece of Mail</option>
+	<option value="I am an Existing Customer">I am an Existing Customer</option>
+
+</select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Description of Your Request:</td>
+                <td class="value_required">
+                    <textarea name="ctl00$ContentPlaceHolder1$txtComments" rows="5" cols="20" id="ctl00_ContentPlaceHolder1_txtComments" class="box"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Prove You're Human! Solve 9+5=</td>
+                <td class="value">
+                    <input name="ctl00$ContentPlaceHolder1$validation" type="text" id="ctl00_ContentPlaceHolder1_validation" class="box" />
+                </td>
+            </tr>
+           <tr>
+                <td >&nbsp;</td>
+                <td >&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <input type="submit" name="ctl00$ContentPlaceHolder1$btnSubmit" value="SUBMIT FORM" id="ctl00_ContentPlaceHolder1_btnSubmit" class="fbtn-main" />
+                </td>
+            </tr>
+            <tr>
+                <td >&nbsp;</td>
+                <td >&nbsp;</td>
+            </tr>
+        </table>
+        
+    </div>
+
+        </div><!-- end div id=-"content_area" -->
+        
+        <div class="clear" style="height: 20px">&nbsp;</div>
+        
+        
+        
+        <div class="clear" style="height: 5px">&nbsp;</div>
+        
+    </div><!-- end div id="wrapper" -->
+    
+        <div id="footerBar">
+                    
+
+       Tarzan TreeScaping | 32 CommonWealth Ave | Newburgh, NY 12550 | (845) 518-0133 | <a href="http://admin3.landscaperwebsites.com/admin.aspx" style="color: White;" target=_blank>Admin Login</a>
+
+
+        </div><!-- end div id="footerBar" -->
+        
+    </form>
+</body>
+</html>
+
+

@@ -1,7 +1,9 @@
 import os
 import re
+import sys
 import time
 import json
+import html as htmlmod
 import urllib.parse as up
 import requests
 
@@ -15,6 +17,10 @@ TEXT_DIR = os.path.join(OUT, "text")
 for d in (PAGES_DIR, ASSETS_DIR, TEXT_DIR):
     os.makedirs(d, exist_ok=True)
 
+DEADLINE = time.monotonic() + 6 * 60  # hard wall-clock budget
+MAX_PAGES = 25
+MAX_ASSETS = 200
+
 session = requests.Session()
 session.headers.update({"User-Agent": "Mozilla/5.0 (compatible; ArchiveFetch/1.0)"})
 
@@ -23,22 +29,32 @@ fetched_assets = {}
 manifest = []
 
 
+def log(msg):
+    print(msg, flush=True)
+
+
+def out_of_time():
+    return time.monotonic() > DEADLINE
+
+
 def wb_url(target_url, ts=TS, mod="id_"):
     return f"https://web.archive.org/web/{ts}{mod}/{target_url}"
 
 
-def get(url, tries=4, timeout=30):
+def get(url, tries=2, timeout=12):
     last_exc = None
     for i in range(tries):
+        if out_of_time():
+            return None
         try:
             r = session.get(url, timeout=timeout)
             if r.status_code == 200:
                 return r
-            last_exc = Exception(f"status {r.status_code} for {url}")
+            last_exc = Exception(f"status {r.status_code}")
         except Exception as e:  # noqa: BLE001
             last_exc = e
-        time.sleep(1.5 * (i + 1))
-    print(f"FAILED: {url} :: {last_exc}")
+        time.sleep(1)
+    log(f"FAILED: {url} :: {last_exc}")
     return None
 
 
@@ -60,9 +76,9 @@ def resolve(base, link):
     return up.urljoin(base, link)
 
 
-def extract_links(html, base_url):
-    hrefs = re.findall(r'(?:href|src)\s*=\s*["\']([^"\']+)["\']', html, re.I)
-    css_urls = re.findall(r'url\(\s*["\']?([^"\')]+)["\']?\s*\)', html, re.I)
+def extract_links(html_text, base_url):
+    hrefs = re.findall(r'(?:href|src)\s*=\s*["\']([^"\']+)["\']', html_text, re.I)
+    css_urls = re.findall(r'url\(\s*["\']?([^"\')]+)["\']?\s*\)', html_text, re.I)
     out = []
     for h in hrefs + css_urls:
         h = h.strip()
@@ -72,47 +88,9 @@ def extract_links(html, base_url):
     return out
 
 
-def crawl_page(path, depth):
-    if path in visited_pages:
-        return
-    visited_pages.add(path)
-    target = ROOT.rstrip("/") + path if path.startswith("/") else path
-    url = wb_url(target)
-    r = get(url)
-    if r is None:
-        return
-    html = r.text
-    fname = safe_name(up.urlparse(target).path) + ".html"
-    with open(os.path.join(PAGES_DIR, fname), "w", encoding="utf-8") as f:
-        f.write(html)
-
-    text = re.sub(r"(?is)<script.*?</script>|<style.*?</style>", " ", html)
-    text = re.sub(r"(?s)<[^>]+>", "\n", text)
-    text = re.sub(r"[ \t]+", " ", text)
-    text = re.sub(r"\n\s*\n+", "\n\n", text)
-    import html as htmlmod
-    text = htmlmod.unescape(text)
-    with open(os.path.join(TEXT_DIR, safe_name(up.urlparse(target).path) + ".txt"), "w", encoding="utf-8") as f:
-        f.write(text.strip())
-
-    links = extract_links(html, target)
-    manifest.append({"path": path, "target": target, "saved_html": fname, "link_count": len(links)})
-
-    same_host_pages = []
-    for link in links:
-        parsed = up.urlparse(link)
-        if is_asset(link):
-            download_asset(link)
-        elif parsed.netloc and up.urlparse(ROOT).netloc.split(":")[0] in parsed.netloc:
-            same_host_pages.append(parsed.path or "/")
-
-    if depth > 0:
-        for p in set(same_host_pages):
-            if p not in visited_pages:
-                crawl_page(p, depth - 1)
-
-
 def download_asset(url):
+    if out_of_time() or len(fetched_assets) >= MAX_ASSETS:
+        return
     if url in fetched_assets:
         return
     parsed = up.urlparse(url)
@@ -121,18 +99,64 @@ def download_asset(url):
         return
     out_path = os.path.join(ASSETS_DIR, rel_path)
     os.makedirs(os.path.dirname(out_path) or ASSETS_DIR, exist_ok=True)
-    wurl = wb_url(url)
-    r = get(wurl)
+    r = get(wb_url(url))
     if r is None:
         fetched_assets[url] = None
         return
     with open(out_path, "wb") as f:
         f.write(r.content)
     fetched_assets[url] = out_path
-    print(f"Saved asset: {url} -> {out_path} ({len(r.content)} bytes)")
+    log(f"Saved asset: {url} -> {out_path} ({len(r.content)} bytes)")
 
 
-crawl_page(START_PATH, depth=1)
+def crawl_page(path, depth):
+    if out_of_time() or path in visited_pages or len(visited_pages) >= MAX_PAGES:
+        return
+    visited_pages.add(path)
+    target = ROOT.rstrip("/") + path if path.startswith("/") else path
+    log(f"Fetching page: {target}")
+    r = get(wb_url(target))
+    if r is None:
+        return
+    html_text = r.text
+    fname = safe_name(up.urlparse(target).path) + ".html"
+    with open(os.path.join(PAGES_DIR, fname), "w", encoding="utf-8") as f:
+        f.write(html_text)
+
+    text = re.sub(r"(?is)<script.*?</script>|<style.*?</style>", " ", html_text)
+    text = re.sub(r"(?s)<[^>]+>", "\n", text)
+    text = re.sub(r"[ \t]+", " ", text)
+    text = re.sub(r"\n\s*\n+", "\n\n", text)
+    text = htmlmod.unescape(text)
+    with open(os.path.join(TEXT_DIR, safe_name(up.urlparse(target).path) + ".txt"), "w", encoding="utf-8") as f:
+        f.write(text.strip())
+
+    links = extract_links(html_text, target)
+    manifest.append({"path": path, "target": target, "saved_html": fname, "link_count": len(links)})
+    log(f"  -> {len(links)} links found")
+
+    same_host_pages = []
+    for link in links:
+        if out_of_time():
+            break
+        parsed = up.urlparse(link)
+        if is_asset(link):
+            download_asset(link)
+        elif parsed.netloc and up.urlparse(ROOT).netloc.split(":")[0] in parsed.netloc:
+            same_host_pages.append(parsed.path or "/")
+
+    if depth > 0:
+        for p in set(same_host_pages):
+            if out_of_time():
+                break
+            if p not in visited_pages:
+                crawl_page(p, depth - 1)
+
+
+try:
+    crawl_page(START_PATH, depth=1)
+except Exception as e:  # noqa: BLE001
+    log(f"Crawl aborted with error: {e}")
 
 with open(os.path.join(OUT, "manifest.json"), "w", encoding="utf-8") as f:
     json.dump(
@@ -140,11 +164,13 @@ with open(os.path.join(OUT, "manifest.json"), "w", encoding="utf-8") as f:
             "pages": manifest,
             "assets": {k: v for k, v in fetched_assets.items()},
             "visited_pages": sorted(visited_pages),
+            "timed_out": out_of_time(),
         },
         f,
         indent=2,
     )
 
-print(f"Pages visited: {len(visited_pages)}")
-print(f"Assets attempted: {len(fetched_assets)}")
-print(f"Assets saved: {sum(1 for v in fetched_assets.values() if v)}")
+log(f"Pages visited: {len(visited_pages)}")
+log(f"Assets attempted: {len(fetched_assets)}")
+log(f"Assets saved: {sum(1 for v in fetched_assets.values() if v)}")
+sys.exit(0)

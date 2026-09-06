@@ -1,8 +1,13 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
+// Reduced-motion handling lives at the root via <MotionConfig
+// reducedMotion="user"> (see layout.tsx), not here — branching the
+// initial/whileInView props on useReducedMotion() causes a hydration
+// mismatch, since the server can never know the client's OS media-query
+// preference during the initial render.
 export default function Reveal({
   children,
   delay = 0,
@@ -14,12 +19,10 @@ export default function Reveal({
   y?: number;
   className?: string;
 }) {
-  const reduceMotion = useReducedMotion();
-
   return (
     <motion.div
-      initial={reduceMotion ? undefined : { opacity: 0, y }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}

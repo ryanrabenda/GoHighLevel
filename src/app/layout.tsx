@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Barlow_Condensed, Inter, Oswald } from "next/font/google";
+import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import { business, images } from "@/lib/business";
 import Header from "@/components/Header";
@@ -135,18 +136,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-forest-dark focus:px-4 focus:py-2 focus:text-offwhite"
-        >
-          Skip to main content
-        </a>
-        <Header />
-        <main id="main-content" className="flex-1 pb-16 md:pb-0">
-          {children}
-        </main>
-        <Footer />
-        <MobileActionBar />
+        <MotionConfig reducedMotion="user">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-forest-dark focus:px-4 focus:py-2 focus:text-offwhite"
+          >
+            Skip to main content
+          </a>
+          <Header />
+          <main id="main-content" className="flex-1 pb-16 md:pb-0">
+            {children}
+          </main>
+          <Footer />
+          <MobileActionBar />
+        </MotionConfig>
       </body>
     </html>
   );

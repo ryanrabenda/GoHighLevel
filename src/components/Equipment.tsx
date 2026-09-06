@@ -9,7 +9,6 @@ export default function Equipment() {
         src={images.equipment}
         alt="Professional tree service equipment including a bucket truck, wood chipper and arborist rigging staged in a driveway"
         fill
-        unoptimized
         className="object-cover opacity-30"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-forest-dark via-forest-dark/85 to-forest-dark/40" />

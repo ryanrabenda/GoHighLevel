@@ -13,7 +13,6 @@ export default function Hero() {
         alt="Arborist and ground crew safely removing a large limb from a mature oak tree at a Hudson Valley home"
         fill
         priority
-        unoptimized
         className="object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-forest-dark via-forest-dark/60 to-forest-dark/20" />

@@ -61,7 +61,6 @@ export default function Treescaping() {
                       src={stage.image}
                       alt={stage.alt}
                       fill
-                      unoptimized
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                     />

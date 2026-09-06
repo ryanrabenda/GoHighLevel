@@ -11,7 +11,6 @@ export default function About() {
             src={images.about}
             alt="Tree service crew standing together beside a truck and equipment on a Hudson Valley property"
             fill
-            unoptimized
             className="object-cover"
             sizes="(min-width: 1024px) 50vw, 100vw"
           />

@@ -63,7 +63,6 @@ export default function Portfolio() {
                   src={item.image}
                   alt={item.imageAlt}
                   fill
-                  unoptimized
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                 />

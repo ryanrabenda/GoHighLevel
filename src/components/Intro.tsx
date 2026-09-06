@@ -35,7 +35,6 @@ export default function Intro() {
               src={images.introBefore}
               alt="Illustrative overgrown, neglected Hudson Valley yard before treescaping"
               fill
-              unoptimized
               className="object-cover"
             />
             <div

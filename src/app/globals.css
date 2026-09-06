@@ -10,6 +10,7 @@
   --color-charcoal: #161a17;
   --color-amber: #b5762c;
   --color-oxblood: #6e2a20;
+  --color-gold: #c9a455;
 }
 
 @theme inline {
@@ -22,6 +23,7 @@
   --color-charcoal: var(--color-charcoal);
   --color-amber: var(--color-amber);
   --color-oxblood: var(--color-oxblood);
+  --color-gold: var(--color-gold);
 
   --font-display: var(--font-barlow-condensed);
   --font-eyebrow: var(--font-oswald);

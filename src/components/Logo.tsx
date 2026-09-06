@@ -1,31 +1,31 @@
 import { images, business } from "@/lib/business";
 
-// The logo file has its own flat background baked in, so its rectangular
-// edge doesn't participate in the header's scroll transition (transparent
-// gradient over the hero -> solid dark bar). A soft edge mask feathers
-// that boundary to transparent on all sides so the box blends into
-// whatever is behind it at any point in the transition, without touching
-// the image file itself.
+// No background box at all: only the source image's alpha shape (real,
+// unaltered outline of the icon and wordmark) is used as a mask, filled
+// with solid gold. There is nothing behind the letters except whatever
+// the header itself is doing at that moment — so as the header fades
+// between its transparent and solid states on scroll, the logo has no
+// separate layer of its own to keep in sync; it's already part of it.
 export default function Logo({ className = "" }: { className?: string }) {
-  const feather =
-    "linear-gradient(to right, transparent, black 6%, black 94%, transparent), " +
-    "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)";
+  const maskImage = `url(${images.logo})`;
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={images.logo}
-      alt={`${business.name} logo`}
+    <span
+      role="img"
+      aria-label={`${business.name} logo`}
       className={className}
       style={{
-        WebkitMaskImage: feather,
-        maskImage: feather,
-        WebkitMaskComposite: "source-in, source-over",
-        maskComposite: "intersect",
-        WebkitMaskSize: "100% 100%",
-        maskSize: "100% 100%",
+        display: "inline-block",
+        aspectRatio: "2000 / 876",
+        backgroundColor: "var(--color-gold)",
+        WebkitMaskImage: maskImage,
+        maskImage,
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
         WebkitMaskRepeat: "no-repeat",
         maskRepeat: "no-repeat",
+        WebkitMaskPosition: "left center",
+        maskPosition: "left center",
       }}
     />
   );

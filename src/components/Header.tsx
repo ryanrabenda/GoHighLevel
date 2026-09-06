@@ -6,11 +6,11 @@ import Logo from "./Logo";
 
 const navLinks = [
   { href: "#services", label: "Services" },
-  { href: "#process", label: "Process" },
+  { href: "#process", label: "Our Process" },
   { href: "#story", label: "About" },
   { href: "#gallery", label: "Photos" },
   { href: "#testimonials", label: "Testimonials" },
-  { href: "#service-area", label: "Area" },
+  { href: "#service-area", label: "Service Area" },
 ];
 
 export default function Header() {
@@ -51,37 +51,33 @@ export default function Header() {
           scrolled ? "shadow-[0_6px_18px_rgba(34,28,21,0.18)]" : ""
         }`}
       >
-        <div className="wrap grid h-16 grid-cols-[auto_1fr_auto] items-center md:h-[4.5rem] lg:grid-cols-[1fr_auto_1fr]">
-          <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex">
+        <div className="wrap flex h-16 items-center justify-between md:h-[4.5rem]">
+          <a href="#top" aria-label={`${company.name} home`} className="shrink-0">
+            <Logo className="h-10 w-auto md:h-12" />
+          </a>
+
+          <nav aria-label="Primary" className="hidden items-center gap-5 xl:flex">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="font-label text-sm font-medium uppercase tracking-wide text-forest transition-colors hover:text-oxblood"
+                className="whitespace-nowrap font-label text-sm font-medium uppercase tracking-wide text-forest transition-colors hover:text-oxblood"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          <a
-            href="#top"
-            aria-label={`${company.name} home`}
-            className="col-start-2 shrink-0 justify-self-center lg:col-start-2"
-          >
-            <Logo className="h-10 w-auto md:h-12" />
-          </a>
-
-          <div className="col-start-3 hidden items-center justify-end gap-3 lg:flex xl:gap-4">
+          <div className="hidden items-center gap-4 xl:flex">
             <a
               href={company.phoneHref}
-              className="whitespace-nowrap font-display text-base font-semibold text-forest hover:text-oxblood xl:text-lg"
+              className="whitespace-nowrap font-display text-lg font-semibold text-forest hover:text-oxblood"
             >
               {company.phone}
             </a>
             <a
               href="#contact"
-              className="whitespace-nowrap rounded-full bg-forest px-4 py-2.5 font-label text-sm font-semibold uppercase tracking-wide text-cream transition-colors hover:bg-oxblood xl:px-5"
+              className="whitespace-nowrap rounded-full bg-forest px-5 py-2.5 font-label text-sm font-semibold uppercase tracking-wide text-cream transition-colors hover:bg-oxblood"
             >
               Request a Quote
             </a>
@@ -89,7 +85,7 @@ export default function Header() {
 
           <button
             type="button"
-            className="col-start-3 flex h-10 w-10 items-center justify-center justify-self-end text-forest lg:hidden"
+            className="flex h-10 w-10 items-center justify-center text-forest xl:hidden"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
@@ -107,14 +103,13 @@ export default function Header() {
               />
             </span>
           </button>
-          <span className="col-start-1 w-10 lg:hidden" aria-hidden />
         </div>
       </div>
 
       {/* Full-screen mobile overlay menu */}
       <div
         id="mobile-nav"
-        className={`fixed inset-0 top-16 z-40 bg-forest transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 top-16 z-40 bg-forest transition-opacity duration-300 md:top-[6.75rem] xl:hidden ${
           menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >

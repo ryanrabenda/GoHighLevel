@@ -1,45 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --color-forest-deep: #102e22;
-  --color-forest-dark: #071a13;
-  --color-moss: #6c7c3a;
-  --color-khaki: #c5ae78;
-  --color-stone: #a49c8b;
-  --color-offwhite: #f5f1e7;
-  --color-charcoal: #161a17;
-  --color-amber: #b5762c;
-  --color-oxblood: #6e2a20;
-  --color-gold: #c9a455;
+  /* Parchment/khaki forward palette — the actual background color of the
+     original tarzantreescaping.com site (#ddc490) is the anchor here,
+     rather than being used only as an accent. */
+  --color-parchment: #ddc490;
+  --color-parchment-light: #f3e9d2;
+  --color-cream: #faf5e8;
+  --color-forest: #23422f;
+  --color-forest-deep: #16281c;
+  --color-moss: #5f7a45;
+  --color-oxblood: #7a2f22;
+  --color-gold: #a97625;
+  --color-bark: #3d2f22;
+  --color-stone: #8c8270;
+  --color-charcoal: #221c15;
 }
 
 @theme inline {
+  --color-parchment: var(--color-parchment);
+  --color-parchment-light: var(--color-parchment-light);
+  --color-cream: var(--color-cream);
+  --color-forest: var(--color-forest);
   --color-forest-deep: var(--color-forest-deep);
-  --color-forest-dark: var(--color-forest-dark);
   --color-moss: var(--color-moss);
-  --color-khaki: var(--color-khaki);
-  --color-stone: var(--color-stone);
-  --color-offwhite: var(--color-offwhite);
-  --color-charcoal: var(--color-charcoal);
-  --color-amber: var(--color-amber);
   --color-oxblood: var(--color-oxblood);
   --color-gold: var(--color-gold);
+  --color-bark: var(--color-bark);
+  --color-stone: var(--color-stone);
+  --color-charcoal: var(--color-charcoal);
 
-  --font-display: var(--font-barlow-condensed);
-  --font-eyebrow: var(--font-oswald);
-  --font-sans: var(--font-inter);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-source-serif);
+  --font-label: var(--font-inter);
 
-  --animate-drift: drift 60s linear infinite;
   --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes drift {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 @keyframes fade-up {
@@ -58,22 +53,14 @@ html {
 }
 
 body {
-  background: var(--color-offwhite);
+  background: var(--color-cream);
   color: var(--color-charcoal);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), serif;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
   }
 }
 
@@ -81,35 +68,31 @@ body {
   text-wrap: balance;
 }
 
-.container-tarzan {
+.wrap {
   width: 100%;
-  max-width: 80rem;
+  max-width: 84rem;
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
 
 @media (min-width: 640px) {
-  .container-tarzan {
+  .wrap {
     padding-inline: 2rem;
   }
 }
 
-.rope-divider {
-  height: 2px;
-  background-image: repeating-linear-gradient(
-    90deg,
-    currentColor 0 10px,
-    transparent 10px 18px
-  );
-  opacity: 0.35;
+/* Thin dashed rule echoing the original site's torn-paper nav buttons,
+   without literally reproducing the graphic. */
+.stitch-rule {
+  border-top: 1px dashed color-mix(in srgb, currentColor 45%, transparent);
 }
 
 ::selection {
-  background: var(--color-moss);
-  color: var(--color-offwhite);
+  background: var(--color-gold);
+  color: var(--color-cream);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-khaki);
+  outline: 2px solid var(--color-gold);
   outline-offset: 3px;
 }

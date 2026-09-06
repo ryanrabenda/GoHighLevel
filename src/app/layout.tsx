@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, Inter, Oswald } from "next/font/google";
+import { Fraunces, Source_Serif_4, Inter } from "next/font/google";
+import { MotionConfig } from "framer-motion";
 import "./globals.css";
-import { business, images } from "@/lib/business";
+import { company, images, counties } from "@/lib/business";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileActionBar from "@/components/MobileActionBar";
 
-const barlowCondensed = Barlow_Condensed({
-  variable: "--font-barlow-condensed",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const oswald = Oswald({
-  variable: "--font-oswald",
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
@@ -58,10 +60,10 @@ export const metadata: Metadata = {
     description:
       "Tree removal, pruning, landscaping, land clearing, junk removal and stonework in Newburgh and throughout the Hudson Valley.",
     url: siteUrl,
-    siteName: business.name,
+    siteName: company.name,
     locale: "en_US",
     type: "website",
-    images: [{ url: images.hero, width: 1600, height: 686, alt: business.tagline }],
+    images: [{ url: images.hero, width: 1600, height: 686, alt: company.tagline }],
   },
   twitter: {
     card: "summary_large_image",
@@ -71,9 +73,9 @@ export const metadata: Metadata = {
     images: [images.hero],
   },
   icons: {
-    icon: images.logo,
-    shortcut: images.logo,
-    apple: images.logo,
+    icon: images.favicon,
+    shortcut: images.favicon,
+    apple: images.favicon,
   },
 };
 
@@ -81,41 +83,50 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: business.name,
+    name: company.name,
     description:
       "Tree removal, tree pruning, landscaping, junk removal, land clearing and stonework serving Newburgh, NY and the Hudson Valley.",
     url: siteUrl,
-    telephone: business.phoneHref.replace("tel:", ""),
+    telephone: company.phoneHref.replace("tel:", ""),
     address: {
       "@type": "PostalAddress",
-      streetAddress: business.streetAddress,
-      addressLocality: business.addressLocality,
-      addressRegion: business.addressRegion,
+      streetAddress: company.street,
+      addressLocality: company.city,
+      addressRegion: company.state,
+      postalCode: company.zip,
       addressCountry: "US",
     },
-    areaServed: business.serviceCounties.map((county) => ({
+    areaServed: counties.map((county) => ({
       "@type": "AdministrativeArea",
       name: county,
     })),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: business.googleRating,
-      reviewCount: business.googleReviewCount,
-    },
+    // No verified current Google rating/review count is available — see
+    // company.googleRating in business.ts. Only emit aggregateRating once
+    // real figures are on hand; publishing invented numbers here would be
+    // misleading structured data.
+    ...(company.googleRating && company.googleReviewCount
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: company.googleRating,
+            reviewCount: company.googleReviewCount,
+          },
+        }
+      : {}),
     priceRange: "$$",
     makesOffer: [
       "Tree Removal",
       "Tree Pruning",
       "Landscaping",
-      "Junk Removal",
       "Land Clearing",
+      "Junk Removal",
       "Stonework",
     ].map((name) => ({
       "@type": "Offer",
       itemOffered: {
         "@type": "Service",
         name,
-        provider: { "@type": "LocalBusiness", name: business.name },
+        provider: { "@type": "LocalBusiness", name: company.name },
       },
     })),
   };
@@ -123,25 +134,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${barlowCondensed.variable} ${oswald.variable} ${inter.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${sourceSerif.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-offwhite text-charcoal">
+      <body className="min-h-full flex flex-col bg-cream text-charcoal">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-forest-dark focus:px-4 focus:py-2 focus:text-offwhite"
-        >
-          Skip to main content
-        </a>
-        <Header />
-        <main id="main-content" className="flex-1 pb-16 md:pb-0">
-          {children}
-        </main>
-        <Footer />
-        <MobileActionBar />
+        <MotionConfig reducedMotion="user">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-forest focus:px-4 focus:py-2 focus:text-cream"
+          >
+            Skip to main content
+          </a>
+          <Header />
+          <main id="main-content" className="flex-1 pb-16 md:pb-0">
+            {children}
+          </main>
+          <Footer />
+          <MobileActionBar />
+        </MotionConfig>
       </body>
     </html>
   );

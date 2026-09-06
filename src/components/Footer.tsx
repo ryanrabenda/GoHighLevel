@@ -1,48 +1,50 @@
-import { business, services } from "@/lib/business";
+import { company, services } from "@/lib/business";
 import Logo from "./Logo";
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-forest-dark pb-24 pt-16 md:pb-16">
-      <div className="container-tarzan grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="bg-forest-deep pb-24 pt-16 md:pb-16">
+      <div className="wrap grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Logo className="h-14 w-auto" />
-          <p className="mt-4 text-sm text-offwhite/60">
-            {business.streetAddress}
+          <div className="inline-block rounded-lg bg-parchment px-3 py-2">
+            <Logo className="h-12 w-auto" />
+          </div>
+          <p className="mt-4 font-body text-sm text-cream/60">
+            {company.street}
             <br />
-            {business.addressLocality}, {business.addressRegion}
+            {company.city}, {company.state} {company.zip}
           </p>
           <a
-            href={business.phoneHref}
-            className="mt-2 inline-block font-eyebrow text-sm uppercase tracking-wide text-khaki"
+            href={company.phoneHref}
+            className="mt-2 inline-block font-label text-sm font-semibold uppercase tracking-wide text-gold"
           >
-            {business.phoneDisplay}
+            {company.phone}
           </a>
         </div>
 
         <div>
-          <h3 className="font-eyebrow text-xs uppercase tracking-[0.2em] text-offwhite/50">
+          <h3 className="font-label text-xs font-semibold uppercase tracking-[0.2em] text-cream/45">
             Quick Links
           </h3>
-          <ul className="mt-4 space-y-2 text-sm text-offwhite/70">
-            <li><a href="#services" className="hover:text-khaki">Services</a></li>
-            <li><a href="#about" className="hover:text-khaki">About</a></li>
-            <li><a href="#work" className="hover:text-khaki">Our Work</a></li>
-            <li><a href="#reviews" className="hover:text-khaki">Reviews</a></li>
-            <li><a href="#contact" className="hover:text-khaki">Contact</a></li>
+          <ul className="mt-4 space-y-2 font-body text-sm text-cream/70">
+            <li><a href="#services" className="hover:text-gold">Services</a></li>
+            <li><a href="#story" className="hover:text-gold">About</a></li>
+            <li><a href="#gallery" className="hover:text-gold">Photos</a></li>
+            <li><a href="#testimonials" className="hover:text-gold">Testimonials</a></li>
+            <li><a href="#contact" className="hover:text-gold">Request a Quote</a></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="font-eyebrow text-xs uppercase tracking-[0.2em] text-offwhite/50">
+          <h3 className="font-label text-xs font-semibold uppercase tracking-[0.2em] text-cream/45">
             Services
           </h3>
-          <ul className="mt-4 space-y-2 text-sm text-offwhite/70">
+          <ul className="mt-4 space-y-2 font-body text-sm text-cream/70">
             {services.map((s) => (
               <li key={s.id}>
-                <a href="#services" className="hover:text-khaki">
+                <a href="#services" className="hover:text-gold">
                   {s.name}
                 </a>
               </li>
@@ -51,25 +53,33 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-eyebrow text-xs uppercase tracking-[0.2em] text-offwhite/50">
+          <h3 className="font-label text-xs font-semibold uppercase tracking-[0.2em] text-cream/45">
             More
           </h3>
-          <ul className="mt-4 space-y-2 text-sm text-offwhite/70">
+          <ul className="mt-4 space-y-2 font-body text-sm text-cream/70">
             <li>
-              <a href={business.specialServicesUrl} className="hover:text-khaki">
+              <a href={company.emergencyUrl} className="hover:text-gold">
                 Demolition &amp; Emergency Services
               </a>
             </li>
+            <li>
+              <a
+                href={`mailto:${company.email}?subject=${encodeURIComponent("Referral to Tarzan Treescaping")}`}
+                className="hover:text-gold"
+              >
+                Refer a Friend
+              </a>
+            </li>
           </ul>
-          <p className="mt-6 font-display text-lg font-bold uppercase text-moss">
-            {business.tagline}
+          <p className="mt-6 font-display text-lg font-semibold italic text-parchment">
+            {company.tagline}
           </p>
         </div>
       </div>
 
-      <div className="container-tarzan mt-12 border-t border-offwhite/10 pt-6">
-        <p className="text-xs text-offwhite/40">
-          &copy; {year} {business.name}. All rights reserved.
+      <div className="wrap mt-12 border-t border-cream/10 pt-6">
+        <p className="text-xs text-cream/40">
+          &copy; {year} {company.name}. All rights reserved.
         </p>
       </div>
     </footer>

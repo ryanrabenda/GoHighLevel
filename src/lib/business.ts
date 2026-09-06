@@ -11,14 +11,23 @@ export const business = {
   email: "info@tarzantreescaping.com",
   location: "Newburgh, NY",
   region: "Hudson Valley",
+  // Address and phone confirmed against the footer of every page of the
+  // archived site (32 CommonWealth Ave | Newburgh, NY 12550 | (845) 518-0133).
   streetAddress: "32 Commonwealth Avenue",
   addressLocality: "Newburgh",
   addressRegion: "NY",
-  fullAddress: "32 Commonwealth Avenue, Newburgh, NY",
+  postalCode: "12550",
+  fullAddress: "32 Commonwealth Avenue, Newburgh, NY 12550",
   tagline: "Taming the Jungle in Your Yard.",
+  yearsInBusiness: "10+",
+  license: "Licensed by the Landscape Contractors Association",
   specialServicesUrl: SPECIAL_SERVICES_URL,
-  googleRating: 4.9,
-  googleReviewCount: 35,
+  // No verified current Google rating/review count is available — leave
+  // unset rather than publish invented numbers (both in on-page copy and
+  // in the LocalBusiness schema in layout.tsx). Fill in real figures from
+  // the business's actual Google Business Profile before launch.
+  googleRating: null as number | null,
+  googleReviewCount: null as number | null,
   googleMapsUrl:
     "https://www.google.com/maps/place/?q=Tarzan+Treescaping,32+Commonwealth+Ave,Newburgh,NY",
   googleMapsEmbedSrc:
@@ -113,11 +122,33 @@ export const services: Service[] = [
   },
 ];
 
+// The full breadth of services from the original site's services list —
+// shown as a supplementary tag list beneath the six core service cards
+// above, rather than expanded into full cards of their own.
+export const additionalServices: string[] = [
+  "Spring & Fall Cleanup",
+  "Lawn Mowing",
+  "Weed Control & Fertilization",
+  "Insect & Disease Control",
+  "Mulch Installation",
+  "Planting Service",
+  "Sod Installation",
+  "Irrigation & Sprinkler Repair",
+  "Driveway Sealcoating",
+  "Snow Plowing & Salting",
+  "Landscape Lighting",
+  "Holiday Decorations",
+];
+
 export const images = {
-  // The actual icon mark (no wordmark) — background-removed only, no
-  // regeneration. Used as a mask shape in Logo.tsx, filled with solid
-  // gold, so there is no background layer of its own.
-  logo: "/images/logo.webp",
+  // The real logo, extracted directly from the archived
+  // tarzantreescaping.com site (icon + "Tarzan Treescaping" wordmark +
+  // tagline, in the original dark green / oxblood colors) and upscaled
+  // for crisp rendering at modern sizes. logoIcon is the icon mark alone,
+  // cropped from the same source, for square contexts like the favicon.
+  logo: "/images/logo-full.webp",
+  logoIcon: "/images/logo-icon.webp",
+  favicon: "/images/favicon.webp",
   hero: "/images/hero.jpg",
   introBefore: "/images/intro-before.jpg",
   introAfter: "/images/intro-after.jpg",

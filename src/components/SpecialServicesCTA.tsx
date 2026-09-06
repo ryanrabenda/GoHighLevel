@@ -9,6 +9,7 @@ export default function SpecialServicesCTA() {
         src={images.demolition}
         alt="Storm-damaged tree cleanup crew responding to a fallen tree on a residential lawn"
         fill
+        sizes="100vw"
         className="object-cover opacity-25 grayscale"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/90 to-charcoal/60" />

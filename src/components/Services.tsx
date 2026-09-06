@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { services } from "@/lib/business";
+import { services, additionalServices } from "@/lib/business";
 import Reveal from "./Reveal";
 
 export default function Services() {
@@ -59,6 +59,22 @@ export default function Services() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={0.2} className="mt-14 border-t border-offwhite/10 pt-8">
+          <p className="font-eyebrow text-xs uppercase tracking-[0.2em] text-offwhite/50">
+            Also Offering
+          </p>
+          <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-2">
+            {additionalServices.map((item) => (
+              <li
+                key={item}
+                className="rounded-full border border-offwhite/15 px-3.5 py-1.5 text-xs text-offwhite/70"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );

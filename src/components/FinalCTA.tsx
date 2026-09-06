@@ -9,6 +9,7 @@ export default function FinalCTA() {
         src={images.treescaping.transform}
         alt="Finished, healthy Hudson Valley property"
         fill
+        sizes="100vw"
         className="object-cover"
       />
       <div className="absolute inset-0 bg-forest-dark/70" />

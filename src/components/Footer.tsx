@@ -12,7 +12,7 @@ export default function Footer() {
           <p className="mt-4 text-sm text-offwhite/60">
             {business.streetAddress}
             <br />
-            {business.addressLocality}, {business.addressRegion}
+            {business.addressLocality}, {business.addressRegion} {business.postalCode}
           </p>
           <a
             href={business.phoneHref}
@@ -58,6 +58,14 @@ export default function Footer() {
             <li>
               <a href={business.specialServicesUrl} className="hover:text-khaki">
                 Demolition &amp; Emergency Services
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${business.email}?subject=${encodeURIComponent("Referral to Tarzan Treescaping")}`}
+                className="hover:text-khaki"
+              >
+                Refer a Friend
               </a>
             </li>
           </ul>

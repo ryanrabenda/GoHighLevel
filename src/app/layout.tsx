@@ -71,9 +71,9 @@ export const metadata: Metadata = {
     images: [images.hero],
   },
   icons: {
-    icon: images.logo,
-    shortcut: images.logo,
-    apple: images.logo,
+    icon: images.favicon,
+    shortcut: images.favicon,
+    apple: images.favicon,
   },
 };
 
@@ -91,17 +91,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       streetAddress: business.streetAddress,
       addressLocality: business.addressLocality,
       addressRegion: business.addressRegion,
+      postalCode: business.postalCode,
       addressCountry: "US",
     },
     areaServed: business.serviceCounties.map((county) => ({
       "@type": "AdministrativeArea",
       name: county,
     })),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: business.googleRating,
-      reviewCount: business.googleReviewCount,
-    },
+    ...(business.googleRating && business.googleReviewCount
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: business.googleRating,
+            reviewCount: business.googleReviewCount,
+          },
+        }
+      : {}),
     priceRange: "$$",
     makesOffer: [
       "Tree Removal",

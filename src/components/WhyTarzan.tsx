@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 const points = [
   {
     title: "Property-first approach",
-    copy: "Treat every property carefully and respectfully.",
+    copy: "We treat every property as if it were our own.",
     icon: (
       <path d="M3 12 12 4l9 8M5 10v10h14V10M9 20v-6h6v6" />
     ),

@@ -13,6 +13,7 @@ export default function Hero() {
         alt="Arborist and ground crew safely removing a large limb from a mature oak tree at a Hudson Valley home"
         fill
         priority
+        sizes="100vw"
         className="object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-forest-dark via-forest-dark/60 to-forest-dark/20" />
@@ -75,8 +76,8 @@ export default function Hero() {
         <Reveal delay={0.4}>
           <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-eyebrow text-xs uppercase tracking-wider text-offwhite/70">
             <li className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-moss" /> Local Hudson
-              Valley Crew
+              <span className="h-1.5 w-1.5 rounded-full bg-moss" /> {business.yearsInBusiness} Years
+              in the Hudson Valley
             </li>
             <li className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-moss" /> Residential +

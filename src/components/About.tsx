@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { images } from "@/lib/business";
+import { business, images } from "@/lib/business";
 import Reveal from "./Reveal";
 
 export default function About() {
@@ -24,17 +24,23 @@ export default function About() {
             Local work. Personal attention. No cookie-cutter yards.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-offwhite/75 sm:text-lg">
-            Tarzan Treescaping is based in Newburgh and works throughout the
-            Hudson Valley, helping property owners tackle tree work,
-            overgrowth, cleanup and outdoor improvement projects of all sizes.
+            {business.name} has proudly served the Hudson Valley for{" "}
+            {business.yearsInBusiness} years. We work closely with every
+            client to bring their ideas to life, using a white-glove approach
+            that makes the lightest impact on your property and environment —
+            treating every property as if it were our own.
           </p>
           <p className="mt-4 text-base leading-relaxed text-offwhite/75 sm:text-lg">
-            Every property is different. The goal is simple: understand what
-            the owner wants, determine the practical way to get there, and
-            leave the property looking better than we found it.
+            We work with trained horticulturalists and arborists to advise on
+            the right trees and materials, and with local suppliers we&rsquo;ve
+            partnered with for years to keep costs down without cutting
+            corners — on residential and commercial properties alike.
+          </p>
+          <p className="mt-4 text-sm font-medium uppercase tracking-wide text-khaki/90">
+            {business.license}
           </p>
           <p className="mt-8 font-display text-2xl font-bold uppercase text-moss">
-            &ldquo;Taming the Jungle in Your Yard.&rdquo;
+            &ldquo;{business.tagline}&rdquo;
           </p>
         </Reveal>
       </div>

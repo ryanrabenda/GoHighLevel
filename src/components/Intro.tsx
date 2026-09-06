@@ -35,6 +35,7 @@ export default function Intro() {
               src={images.introBefore}
               alt="Illustrative overgrown, neglected Hudson Valley yard before treescaping"
               fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
             />
             <div

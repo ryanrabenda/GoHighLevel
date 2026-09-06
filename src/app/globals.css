@@ -11,6 +11,10 @@
   --color-amber: #b5762c;
   --color-oxblood: #6e2a20;
   --color-gold: #c9a455;
+  /* Exact background color (#ddc490) behind the logo on the original
+     tarzantreescaping.com site — used as a backing chip so the real,
+     unrecolored dark-green/oxblood logo stays legible on dark sections. */
+  --color-parchment: #ddc490;
 }
 
 @theme inline {
@@ -24,6 +28,7 @@
   --color-amber: var(--color-amber);
   --color-oxblood: var(--color-oxblood);
   --color-gold: var(--color-gold);
+  --color-parchment: var(--color-parchment);
 
   --font-display: var(--font-barlow-condensed);
   --font-eyebrow: var(--font-oswald);

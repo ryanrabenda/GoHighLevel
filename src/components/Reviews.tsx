@@ -53,13 +53,21 @@ export default function Reviews() {
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center gap-3 rounded-sm border border-stone/30 bg-white/60 px-4 py-3 transition-colors hover:border-moss"
           >
-            <Stars rating={business.googleRating} />
-            <span className="font-display text-2xl font-bold text-forest-dark">
-              {business.googleRating}
-            </span>
-            <span className="font-eyebrow text-sm uppercase tracking-wide text-charcoal/60">
-              {business.googleReviewCount} Google Reviews
-            </span>
+            {business.googleRating ? (
+              <>
+                <Stars rating={business.googleRating} />
+                <span className="font-display text-2xl font-bold text-forest-dark">
+                  {business.googleRating}
+                </span>
+                <span className="font-eyebrow text-sm uppercase tracking-wide text-charcoal/60">
+                  {business.googleReviewCount} Google Reviews
+                </span>
+              </>
+            ) : (
+              <span className="font-eyebrow text-sm uppercase tracking-wide text-charcoal/70">
+                See our reviews on Google
+              </span>
+            )}
           </a>
 
           <p className="mt-5 text-base leading-relaxed text-charcoal/75 sm:text-lg">

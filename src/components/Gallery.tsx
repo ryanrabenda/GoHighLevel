@@ -20,7 +20,7 @@ export default function Gallery() {
       </div>
 
       <Reveal delay={0.1}>
-        <div className="mt-10 flex gap-4 overflow-x-auto pb-4 pl-5 pr-5 [scrollbar-width:thin] sm:pl-8 sm:pr-8 lg:pl-[max(2rem,calc((100vw-84rem)/2+2rem))]">
+        <div className="mt-10 flex gap-4 overflow-x-auto pb-4 pl-5 pr-5 [scrollbar-width:thin] sm:pl-8 sm:pr-8">
           {gallery.map((item) => (
             <figure
               key={item.id}
@@ -30,7 +30,8 @@ export default function Gallery() {
                 src={item.image}
                 alt={item.imageAlt}
                 fill
-                sizes="256px"
+                sizes="(min-width: 640px) 320px, 260px"
+                quality={90}
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-transparent to-transparent" />

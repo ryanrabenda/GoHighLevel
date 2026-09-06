@@ -1,0 +1,67 @@
+name: Fetch and self-host site images
+
+# One-time (re-runnable) job: downloads the Higgsfield-hosted images this
+# site currently references by URL and commits them into public/images/,
+# so the site can be switched to local, self-hosted assets. Runs on
+# GitHub's own runners, which have normal internet access unlike some
+# development sandboxes. Trigger manually from the Actions tab.
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download images
+        run: |
+          set -euo pipefail
+          mkdir -p public/images
+          declare -A files=(
+            ["logo.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260906_005905_558c165c-c678-43a7-bbaa-b3cb0bd97b44.png"
+            ["hero.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192651_776fa55c-2e02-4d5d-bcc7-e7bd45bbc91c.png"
+            ["intro-before.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_92d3f829-053a-4099-8989-4d674db98493.png"
+            ["intro-after.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192137_d2b1e1c5-9b0b-4b56-9ace-46d0e04d02d4.png"
+            ["treescaping-tree.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_e27811aa-059e-42cc-a9c2-83dcc08ee68f.png"
+            ["treescaping-clear.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192137_35250016-6ff6-4200-b989-02bff0e8293c.png"
+            ["treescaping-clean.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192139_87519caf-91f5-44bb-b6f9-77ab2bc94dae.png"
+            ["treescaping-transform.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192651_7bebd774-3f70-42ec-88a2-e3146644959f.png"
+            ["equipment.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192650_138d0638-79cf-4076-a2b1-5be1037a21e5.png"
+            ["about.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_3cba3a9d-cab8-47ac-be6d-ba4b91f668a7.png"
+            ["demolition.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_4f5a09c9-bd55-4679-ba1f-f973be5cdd4d.png"
+            ["service-tree-removal.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192139_053137b6-91c8-467e-94fb-c9551f9da7fe.png"
+            ["service-tree-pruning.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192137_85d653b3-7d26-4e49-a8ae-ab340fd226f5.png"
+            ["service-landscaping.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192650_c75e9641-ffbe-460d-8f32-0c56ee13f57d.png"
+            ["service-junk-removal.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192138_c02f4542-e232-414d-acfb-edcaaa286404.png"
+            ["service-land-clearing.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192137_71310e06-6b87-4b57-a07a-c6cb62056bb2.png"
+            ["stonework.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_eb6c93a8-c87b-456a-8f25-0bc85799cd9a.png"
+            ["portfolio-1.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_c3d8b419-4607-40d0-a8d9-4243252cf866.png"
+            ["portfolio-2.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_87927466-15fd-4a36-9b47-c6fc1c41b031.png"
+            ["portfolio-3.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_9985f985-58d1-456e-99e4-71b70f8d5104.png"
+            ["portfolio-4.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_4473cf76-896f-4dfd-a8c2-1c728c1460f8.png"
+            ["portfolio-6.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_c8638115-de26-4669-b9c1-1d063cd781bf.png"
+            ["portfolio-7.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_2e69e4f9-78b7-478f-99f8-5848cbf91c10.png"
+            ["portfolio-8.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_b6910799-6c58-4511-ae3d-ba184941f7da.png"
+            ["portfolio-9.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_6758506e-9c38-4301-8e25-d1c59fce9a54.png"
+            ["portfolio-10.png"]="https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192739_6323e078-bf8b-436e-b958-31b3ec81628b.png"
+          )
+          for name in "${!files[@]}"; do
+            url="${files[$name]}"
+            echo "Downloading $name from $url"
+            curl -sSL --fail -o "public/images/$name" "$url"
+          done
+          ls -la public/images
+
+      - name: Commit and push
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/images
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add self-hosted site images (fetched from Higgsfield CDN)"
+            git push
+          fi

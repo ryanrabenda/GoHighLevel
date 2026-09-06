@@ -9,6 +9,12 @@ name: Fetch archived Tarzan Treescaping site assets
 # real assets have been extracted and incorporated into the site.
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - claude/tarzan-treescaping-redesign-qur4zs
+    paths:
+      - "scripts/fetch-archive-assets.py"
+      - ".github/workflows/fetch-archive-assets.yml"
 
 permissions:
   contents: write

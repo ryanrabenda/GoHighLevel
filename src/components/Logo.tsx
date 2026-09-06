@@ -1,31 +1,19 @@
-import { images, business } from "@/lib/business";
+import Image from "next/image";
+import { images, company } from "@/lib/business";
 
-// The icon mark only (no wordmark). No background box at all: only the
-// source image's alpha shape is used as a mask, filled with solid gold.
-// There is nothing behind it except whatever the header itself is doing
-// at that moment, so it has no separate layer of its own to keep in sync
-// through the header's transparent-to-solid scroll transition.
+// The real Tarzan Treescaping logo, extracted from the archived site
+// (icon + wordmark + tagline, original colors, unmodified). This site's
+// header and footer are the same parchment tone the logo was originally
+// designed to sit on, so it renders directly with no backing chip needed.
 export default function Logo({ className = "" }: { className?: string }) {
-  const maskImage = `url(${images.logo})`;
-
   return (
-    <span
-      role="img"
-      aria-label={`${business.name} logo`}
-      className={className}
-      style={{
-        display: "inline-block",
-        aspectRatio: "3 / 4",
-        backgroundColor: "var(--color-gold)",
-        WebkitMaskImage: maskImage,
-        maskImage,
-        WebkitMaskSize: "contain",
-        maskSize: "contain",
-        WebkitMaskRepeat: "no-repeat",
-        maskRepeat: "no-repeat",
-        WebkitMaskPosition: "center",
-        maskPosition: "center",
-      }}
+    <Image
+      src={images.logo}
+      alt={`${company.name} — ${company.tagline}`}
+      width={1212}
+      height={292}
+      priority
+      className={`object-contain ${className}`}
     />
   );
 }

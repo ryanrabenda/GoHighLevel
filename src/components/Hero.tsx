@@ -1,93 +1,65 @@
 import Image from "next/image";
-import { business, images } from "@/lib/business";
+import { company, images } from "@/lib/business";
 import Reveal from "./Reveal";
 
 export default function Hero() {
   return (
-    <section
-      id="top"
-      className="relative flex min-h-[92vh] items-center overflow-hidden bg-forest-dark md:min-h-screen"
-    >
-      <Image
-        src={images.hero}
-        alt="Arborist and ground crew safely removing a large limb from a mature oak tree at a Hudson Valley home"
-        fill
-        priority
-        className="object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-forest-dark via-forest-dark/60 to-forest-dark/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-forest-dark/90 via-forest-dark/30 to-transparent" />
+    <section id="top" className="bg-cream">
+      <div className="grid lg:grid-cols-[1.05fr_1fr]">
+        <div className="flex flex-col justify-center px-5 py-16 sm:px-8 sm:py-20 lg:py-28 lg:pl-8 lg:pr-14 xl:pl-16">
+          <Reveal>
+            <p className="font-label text-xs font-semibold uppercase tracking-[0.25em] text-oxblood">
+              {company.region} &middot; Newburgh, NY
+            </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h1 className="mt-5 font-display text-5xl font-semibold leading-[1.04] text-forest text-balance sm:text-6xl xl:text-7xl">
+              {company.tagline}
+            </h1>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="mt-6 max-w-lg font-body text-lg leading-relaxed text-charcoal/80">
+              Tree removal, pruning, land clearing, landscaping, junk removal
+              and stonework for homes and businesses throughout the Hudson
+              Valley — done by a crew that treats every property as if it
+              were their own.
+            </p>
+          </Reveal>
+          <Reveal delay={0.24}>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#contact"
+                className="rounded-full bg-forest px-7 py-3.5 text-center font-label text-sm font-semibold uppercase tracking-wide text-cream transition-colors hover:bg-oxblood"
+              >
+                Request a Free Quote
+              </a>
+              <a
+                href={company.phoneHref}
+                className="rounded-full border border-forest/30 px-7 py-3.5 text-center font-label text-sm font-semibold uppercase tracking-wide text-forest transition-colors hover:border-oxblood hover:text-oxblood"
+              >
+                Call {company.phone}
+              </a>
+            </div>
+          </Reveal>
+          <Reveal delay={0.32}>
+            <p className="mt-8 font-label text-xs uppercase tracking-[0.2em] text-stone">
+              {company.yearsInBusiness} years in the Hudson Valley &middot; Residential
+              &amp; commercial &middot; Free estimates
+            </p>
+          </Reveal>
+        </div>
 
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 opacity-20"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(115deg, transparent 0 40px, rgba(245,241,231,0.5) 40px 41px)",
-        }}
-      />
-
-      <div className="container-tarzan relative z-10 py-32 md:py-40">
-        <Reveal>
-          <p className="font-eyebrow text-xs uppercase tracking-[0.25em] text-khaki sm:text-sm">
-            Tree Service &bull; Land Clearing &bull; Landscaping
-            <br className="sm:hidden" />
-            <span className="sm:ml-2">Newburgh, NY</span>
-          </p>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <h1 className="mt-5 font-display text-6xl font-bold uppercase leading-[0.95] text-offwhite text-balance sm:text-7xl md:text-8xl">
-            Taming the{" "}
-            <span className="text-moss [text-shadow:0_0_28px_rgba(108,124,58,0.55)]">
-              Jungle
-            </span>
-            <br />
-            in Your Yard.
-          </h1>
-        </Reveal>
-
-        <Reveal delay={0.2}>
-          <p className="mt-7 max-w-xl text-base leading-relaxed text-offwhite/85 sm:text-lg">
-            From hazardous tree removal and precision pruning to complete land
-            clearing, landscaping, junk removal and stonework, {business.name}{" "}
-            transforms unruly properties throughout the Hudson Valley.
-          </p>
-        </Reveal>
-
-        <Reveal delay={0.3}>
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <a
-              href="#contact"
-              className="rounded-sm bg-moss px-8 py-4 text-center font-eyebrow text-sm uppercase tracking-wider text-forest-dark shadow-lg shadow-black/30 transition-transform hover:scale-[1.03] hover:bg-khaki"
-            >
-              Get a Free Estimate
-            </a>
-            <a
-              href={business.phoneHref}
-              className="rounded-sm border border-offwhite/40 px-8 py-4 text-center font-eyebrow text-sm uppercase tracking-wider text-offwhite transition-colors hover:border-khaki hover:text-khaki"
-            >
-              Call {business.phoneDisplay}
-            </a>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.4}>
-          <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-eyebrow text-xs uppercase tracking-wider text-offwhite/70">
-            <li className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-moss" /> Local Hudson
-              Valley Crew
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-moss" /> Residential +
-              Commercial
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-moss" /> Free
-              Estimates
-            </li>
-          </ul>
-        </Reveal>
+        <div className="relative h-[46vh] lg:h-auto">
+          <Image
+            src={images.hero}
+            alt="Arborist and ground crew safely removing a large limb from a mature oak tree at a Hudson Valley home"
+            fill
+            priority
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            className="object-cover"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-forest-deep/30 via-transparent to-transparent lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-cream/10" />
+        </div>
       </div>
     </section>
   );

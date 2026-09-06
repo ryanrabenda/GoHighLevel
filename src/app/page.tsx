@@ -1,33 +1,29 @@
 import Hero from "@/components/Hero";
-import Intro from "@/components/Intro";
+import ThenAndNow from "@/components/ThenAndNow";
 import Services from "@/components/Services";
-import Treescaping from "@/components/Treescaping";
-import WhyTarzan from "@/components/WhyTarzan";
-import Equipment from "@/components/Equipment";
-import Portfolio from "@/components/Portfolio";
-import Reviews from "@/components/Reviews";
-import About from "@/components/About";
+import Process from "@/components/Process";
+import Story from "@/components/Story";
+import Gallery from "@/components/Gallery";
+import Testimonials from "@/components/Testimonials";
 import ServiceArea from "@/components/ServiceArea";
-import SpecialServicesCTA from "@/components/SpecialServicesCTA";
+import EmergencyCTA from "@/components/EmergencyCTA";
 import Contact from "@/components/Contact";
-import FinalCTA from "@/components/FinalCTA";
+import ClosingCTA from "@/components/ClosingCTA";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Intro />
+      <ThenAndNow />
       <Services />
-      <Treescaping />
-      <WhyTarzan />
-      <Equipment />
-      <Portfolio />
-      <Reviews />
-      <About />
+      <Process />
+      <Story />
+      <Gallery />
+      <Testimonials />
       <ServiceArea />
-      <SpecialServicesCTA />
+      <EmergencyCTA />
       <Contact />
-      <FinalCTA />
+      <ClosingCTA />
     </>
   );
 }

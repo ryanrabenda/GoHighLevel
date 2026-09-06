@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { business } from "@/lib/business";
+import { company } from "@/lib/business";
 
 const serviceOptions = [
   "Tree Removal",
   "Tree Pruning",
   "Landscaping",
-  "Junk Removal",
   "Land Clearing",
+  "Junk Removal",
   "Stonework",
   "Other",
 ];
@@ -66,22 +66,20 @@ export default function ContactForm() {
     return (
       <div
         role="status"
-        className="flex flex-col items-center gap-4 rounded-sm bg-forest-deep px-6 py-16 text-center"
+        className="flex flex-col items-center gap-4 rounded-2xl bg-forest px-6 py-16 text-center"
       >
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-moss">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#102e22" strokeWidth="2.5" className="h-7 w-7">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#221c15" strokeWidth="2.5" className="h-7 w-7">
             <path d="M20 6 9 17l-5-5" />
           </svg>
         </span>
-        <h3 className="font-display text-3xl font-bold uppercase text-offwhite">
-          Request Received
-        </h3>
-        <p className="max-w-sm text-sm leading-relaxed text-offwhite/75">
+        <h3 className="font-display text-3xl font-semibold text-cream">Request Received</h3>
+        <p className="max-w-sm font-body text-sm leading-relaxed text-cream/75">
           Thanks for reaching out. We&rsquo;ll be in touch shortly to schedule
           your free estimate. Need to talk now?
         </p>
-        <a href={business.phoneHref} className="font-display text-2xl font-bold text-khaki">
-          Call {business.phoneDisplay}
+        <a href={company.phoneHref} className="font-display text-2xl font-semibold text-gold">
+          Call {company.phone}
         </a>
       </div>
     );
@@ -106,8 +104,8 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="service" className="block font-eyebrow text-xs uppercase tracking-wider text-offwhite/80">
-          Service Needed <span className="text-moss">*</span>
+        <label htmlFor="service" className="block font-label text-xs font-semibold uppercase tracking-wide text-cream/80">
+          Service Needed <span className="text-gold">*</span>
         </label>
         <select
           id="service"
@@ -115,7 +113,7 @@ export default function ContactForm() {
           required
           aria-invalid={!!errors.service}
           aria-describedby={errors.service ? "service-error" : undefined}
-          className="mt-2 w-full rounded-sm border border-offwhite/20 bg-forest-dark px-4 py-3 text-offwhite focus:border-moss"
+          className="mt-2 w-full rounded-lg border border-cream/25 bg-forest-deep px-4 py-3 text-cream focus:border-gold"
           defaultValue=""
         >
           <option value="" disabled>
@@ -128,27 +126,27 @@ export default function ContactForm() {
           ))}
         </select>
         {errors.service && (
-          <p id="service-error" className="mt-1 text-xs text-amber">
+          <p id="service-error" className="mt-1 text-xs text-gold">
             {errors.service}
           </p>
         )}
       </div>
 
       <div>
-        <label htmlFor="details" className="block font-eyebrow text-xs uppercase tracking-wider text-offwhite/80">
+        <label htmlFor="details" className="block font-label text-xs font-semibold uppercase tracking-wide text-cream/80">
           Project Details
         </label>
         <textarea
           id="details"
           name="details"
           rows={4}
-          className="mt-2 w-full rounded-sm border border-offwhite/20 bg-forest-dark px-4 py-3 text-offwhite focus:border-moss"
+          className="mt-2 w-full rounded-lg border border-cream/25 bg-forest-deep px-4 py-3 text-cream focus:border-gold"
           placeholder="Tell us about the trees, the property or the job."
         />
       </div>
 
       <div>
-        <label htmlFor="photo" className="block font-eyebrow text-xs uppercase tracking-wider text-offwhite/80">
+        <label htmlFor="photo" className="block font-label text-xs font-semibold uppercase tracking-wide text-cream/80">
           Upload Photos (optional)
         </label>
         <input
@@ -156,12 +154,12 @@ export default function ContactForm() {
           name="photo"
           type="file"
           accept="image/*"
-          className="mt-2 w-full rounded-sm border border-offwhite/20 bg-forest-dark px-4 py-3 text-sm text-offwhite/70 file:mr-4 file:rounded-sm file:border-0 file:bg-moss file:px-3 file:py-1.5 file:font-eyebrow file:text-xs file:uppercase file:text-forest-dark"
+          className="mt-2 w-full rounded-lg border border-cream/25 bg-forest-deep px-4 py-3 text-sm text-cream/70 file:mr-4 file:rounded-full file:border-0 file:bg-gold file:px-3 file:py-1.5 file:font-label file:text-xs file:font-semibold file:uppercase file:text-charcoal"
         />
       </div>
 
       {status === "error" && (
-        <p role="alert" className="text-sm text-amber">
+        <p role="alert" className="text-sm text-gold">
           {errorMessage}
         </p>
       )}
@@ -169,15 +167,15 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-2 rounded-sm bg-moss px-8 py-4 font-eyebrow text-sm uppercase tracking-wider text-forest-dark transition-colors hover:bg-khaki disabled:opacity-60"
+        className="mt-2 rounded-full bg-gold px-8 py-4 font-label text-sm font-semibold uppercase tracking-wide text-charcoal transition-colors hover:bg-parchment disabled:opacity-60"
       >
         {status === "submitting" ? "Sending..." : "Request My Free Estimate"}
       </button>
 
-      <p className="text-center text-sm text-offwhite/60">
+      <p className="text-center font-body text-sm text-cream/60">
         Prefer to talk?{" "}
-        <a href={business.phoneHref} className="font-semibold text-khaki">
-          Call {business.phoneDisplay}
+        <a href={company.phoneHref} className="font-semibold text-gold">
+          Call {company.phone}
         </a>
       </p>
     </form>
@@ -201,8 +199,8 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="block font-eyebrow text-xs uppercase tracking-wider text-offwhite/80">
-        {label} {required && <span className="text-moss">*</span>}
+      <label htmlFor={name} className="block font-label text-xs font-semibold uppercase tracking-wide text-cream/80">
+        {label} {required && <span className="text-gold">*</span>}
       </label>
       <input
         id={name}
@@ -211,10 +209,10 @@ function Field({
         autoComplete={autoComplete}
         aria-invalid={!!error}
         aria-describedby={error ? `${name}-error` : undefined}
-        className="mt-2 w-full rounded-sm border border-offwhite/20 bg-forest-dark px-4 py-3 text-offwhite focus:border-moss"
+        className="mt-2 w-full rounded-lg border border-cream/25 bg-forest-deep px-4 py-3 text-cream focus:border-gold"
       />
       {error && (
-        <p id={`${name}-error`} className="mt-1 text-xs text-amber">
+        <p id={`${name}-error`} className="mt-1 text-xs text-gold">
           {error}
         </p>
       )}

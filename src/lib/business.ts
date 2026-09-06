@@ -120,11 +120,10 @@ export const services: Service[] = [
 ];
 
 export const images = {
-  // The user's original logo, background-removed only (no AI regeneration,
-  // no JPEG round-trip) — genuinely transparent, clean edges. Used as a
-  // mask shape in Logo.tsx so there is no separate background box at all:
-  // the header's own background shows directly around the letters.
-  logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_195840_e5f9b273-4fa9-45d6-b063-a8ee7f0f9151.png",
+  // The actual icon mark (no wordmark) — background-removed only, no
+  // regeneration. Used as a mask shape in Logo.tsx, filled with solid
+  // gold, so there is no background layer of its own.
+  logo: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260906_005905_558c165c-c678-43a7-bbaa-b3cb0bd97b44.png",
   hero: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192651_776fa55c-2e02-4d5d-bcc7-e7bd45bbc91c.png",
   introBefore:
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_92d3f829-053a-4099-8989-4d674db98493.png",

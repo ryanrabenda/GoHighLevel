@@ -120,10 +120,10 @@ export const services: Service[] = [
 ];
 
 export const images = {
-  // The user's exact final file, used as-is with its own baked-in dark
-  // green background — no background removal or any other processing.
-  // The background color already matches the site's dark forest tone.
-  logo: "https://d2ol7oe51mr4n9.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/fd9163e3-8c3b-4c8a-9c67-fb9d8ae8c4ff.png",
+  // The user's exact final file, used as-is with its own baked-in
+  // background (#102e22, matching --color-forest-deep) — no background
+  // removal or any other processing.
+  logo: "https://d2ol7oe51mr4n9.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/3c76bcfb-5732-4727-ba1f-f147100c4791.png",
   hero: "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192651_776fa55c-2e02-4d5d-bcc7-e7bd45bbc91c.png",
   introBefore:
     "https://d8j0ntlcm91z4.cloudfront.net/user_3EUw5wYRncbEeutwZSEgCJ5nayv/hf_20260905_192543_92d3f829-053a-4099-8989-4d674db98493.png",
